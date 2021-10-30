@@ -1,0 +1,39 @@
+actions:
+- action_search_cases_ondate
+- action_search_no_patients
+- utter_ask_location
+- utter_goodbye
+- utter_greet
+entities:
+- day
+- state
+intents:
+- search_cases_ondate
+- greet
+- search_no_patients
+- goodbye
+- inform
+responses:
+  utter_ask_location:
+  - text: Please provide the name of the state.
+  utter_goodbye:
+  - text: Bye
+  utter_greet:
+  - text: Hey!
+  utter_cheer_up:
+  - text: Everything will be all right!
+  utter_did_that_help:
+  - text: Was that helpful?
+  utter_happy:
+  - text: "Great, carry on!"
+  utter_iamabot:
+  - text: "I am a bot, powered by Rasa."
+
+session_config:
+  carry_over_slots_to_new_session: true
+  session_expiration_time: 60
+slots:
+  date:
+    type: text
+  state:
+    type: text
