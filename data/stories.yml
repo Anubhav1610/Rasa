@@ -62,7 +62,7 @@ stories:
   steps:
   - intent: greet
   - action: utter_greet
-  - intent: search_cases_ondate{"date":"April 25"}
+  - intent: search_cases_ondate{"day":"2020-11-11"}
   - action: action_search_cases_ondate
   - intent: goodbye
   - action: utter_goodbye
@@ -71,7 +71,7 @@ stories:
   steps:
   - intent: greet
   - action: utter_greet
-  - intent: search_cases_ondate{"date":"30 June"}
+  - intent: search_cases_ondate{"day":"2021-01-01"}
   - action: action_search_cases_ondate
   - intent: goodbye
   - action: utter_goodbye
@@ -80,7 +80,7 @@ stories:
   steps:
   - intent: greet
   - action: utter_greet
-  - intent: search_cases_ondate{"date":"28 june"}
+  - intent: search_cases_ondate{"day":"2021-04-01"}
   - action: action_search_cases_ondate
   - intent: goodbye
   - action: utter_goodbye
@@ -89,3 +89,77 @@ stories:
   steps:
   - intent: goodbye
   - action: utter_goodbye
+
+- story: 2_places
+  steps:
+  - intent: search_no_patients2
+  - action: action_search_no_patients2
+
+- story: cases between 2 days
+  steps:
+  - intent: search_cases_ondate2
+  - action: action_search_no_patients2
+
+  
+- story: cases on datename
+  steps:
+  - intent: search_cases_ondatename
+  - action: action_search_cases_ondatename
+
+- story: cases on datename_state
+  steps:
+  - intent: search_cases_ondate_state
+  - action: action_search_cases_ondatename_and_state
+
+- story: interactive_story_1
+  steps:
+  - intent: search_cases_ondatename
+  - action: action_search_cases_ondatename
+  - intent: search_no_patients
+    entities:
+    - state: Delhi
+  - slot_was_set:
+    - state: Delhi
+  - action: action_search_no_patients
+  - intent: search_no_patients
+    entities:
+    - state: Delhi
+  - slot_was_set:
+    - state: Delhi
+  - action: action_search_no_patients
+  - intent: search_cases_ondate
+    entities:
+    - day: '2021-02-02'
+  - slot_was_set:
+    - day: '2021-02-02'
+  - action: action_search_cases_ondate
+  - intent: search_cases_ondate
+    entities:
+    - day: 2021-1-1{"value":"2021-01-01"}
+  - slot_was_set:
+    - day: 2021-1-1 {"value":"2021-01-01"}
+  - action: action_search_cases_ondate
+  - intent: search_cases_ondate
+  - intent: search_cases_ondate_state
+  - action: action_search_cases_ondatename_and_state
+
+- story: interactive_story_1
+  steps:
+  - intent: search_cases_ondate_state
+    entities:
+    - state: Delhi
+    - day: '2021-01-02'
+  - slot_was_set:
+    - day: '2021-01-02'
+  - slot_was_set:
+    - state: Delhi
+  - action: action_search_cases_ondate_and_state
+  - intent: search_cases_ondate_state
+    entities:
+    - state: Assam
+    - day: '2021-04-04'
+  - slot_was_set:
+    - day: '2021-04-04'
+  - slot_was_set:
+    - state: Assam
+  - action: action_search_cases_ondate_and_state
