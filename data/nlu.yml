@@ -1,0 +1,145 @@
+version: "2.0"
+nlu:
+- intent: greet
+  examples: |
+    - hey
+    - hello
+    - hi
+    - hello there
+    - good morning
+    - good evening
+    - moin
+    - hey there
+    - let's go
+    - hey dude
+    - goodmorning
+    - goodevening
+    - good afternoon
+- intent: goodbye
+  examples: |
+    - good afternoon
+    - cu
+    - good by
+    - cee you later
+    - good night
+    - bye
+    - goodbye
+    - have a nice day
+    - see you around
+    - bye bye
+    - see you later
+- intent: affirm
+  examples: |
+    - yes
+    - y
+    - indeed
+    - of course
+    - that sounds good
+    - correct
+    - sure
+    - okay
+- intent: deny
+  examples: |
+    - no
+    - n
+    - never
+    - I don't think so
+    - don't like that
+    - no way
+    - not really
+    - absolutely not
+    - nope
+- intent: mood_great
+  examples: |
+    - perfect
+    - great
+    - amazing
+    - feeling like a king
+    - wonderful
+    - I am feeling very good
+    - I am great
+    - I am amazing
+    - I am going to save the world
+    - super stoked
+    - extremely good
+    - so so perfect
+    - so good
+    - so perfect
+- intent: mood_unhappy
+  examples: |
+    - my day was horrible
+    - I am sad
+    - I don't feel very well
+    - I am disappointed
+    - super sad
+    - I'm so sad
+    - sad
+    - very sad
+    - unhappy
+    - not good
+    - not very good
+    - extremly sad
+    - so saad
+    - so sad
+- intent: bot_challenge
+  examples: |
+    - are you a bot?
+    - are you a human?
+    - am I talking to a bot?
+    - am I talking to a human?
+- intent: out_of_scope
+  examples: |
+    - that's not what I want to do
+    - wait stop
+    - you are of no help 
+    - this is not helpful at all
+    - tell me thw whether
+    - it isn't working
+    - never mind
+    - I want to do something else
+    - I changed my mind
+    - stop asking
+    - are you a fool
+- intent: thankyou
+  examples: |
+    - okay great thanks
+    - thank you
+    - thanks
+    - it was great thank you
+    - thanks bye
+    - that's great
+
+- intent: inform
+  examples: |
+    - [Maharashtra](state) 
+    - [Delhi](state)
+    - [Telengana](state)
+    - [Andhra Pradesh](state)
+    - [Haryana](state)
+    - [Uttar Pradesh](state)
+    - [Kerala](state)
+    - [Karnataka](state)
+    - [Tamil Nadu](state)
+    - [Jammu & Kashmir](state)
+    - [Madhya Pradesh](state)
+    - [Gujarat](state)
+    - [Jharkhand](state)
+    - [Chandigarh](state)
+
+- intent: search_no_patients
+  examples: |
+    - how many patients are in [Maharashtra](state)
+    - number of cases in [Kerala](state)
+    - cases in [Karnataka](state)
+    - how many cases in [Telangana](state)
+    - how many cases in [tamil nadu](state)
+
+- intent: search_cases_ondate
+  examples: |
+    - how many cases in [April 25](day)
+    - cases on [May 2](day)
+    - cases on [2 May](day)
+    - cases on [2-05-2020](day)
+    - how many cases on [3 May](day)
+    - how many cases on [08-May-20](day)
+    - cases on [10 april](day)

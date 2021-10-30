@@ -1,0 +1,91 @@
+version: "2.0"
+
+stories:
+
+- story: happy path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_great
+  - action: utter_happy
+
+- story: sad path 1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: affirm
+  - action: utter_happy
+
+- story: sad path 2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: mood_unhappy
+  - action: utter_cheer_up
+  - action: utter_did_that_help
+  - intent: deny
+  - action: utter_goodbye  
+
+- story: search state cases path
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: search_no_patients{"location":"Maharashtra"}
+  - action: action_search_no_patients
+  - intent: goodbye
+  - action: utter_goodbye
+  
+- story: search state cases path2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: inform{"location":"Maharashtra"}
+  - action: action_search_no_patients
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: search state cases + location
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: search_no_patients
+  - action: utter_ask_location
+  - intent: inform{"location":"Maharashtra"}
+  - action: action_search_no_patients
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: search cases on date
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: search_cases_ondate{"date":"April 25"}
+  - action: action_search_cases_ondate
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: search cases on date story1
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: search_cases_ondate{"date":"30 June"}
+  - action: action_search_cases_ondate
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: search cases on date story2
+  steps:
+  - intent: greet
+  - action: utter_greet
+  - intent: search_cases_ondate{"date":"28 june"}
+  - action: action_search_cases_ondate
+  - intent: goodbye
+  - action: utter_goodbye
+
+- story: say goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
