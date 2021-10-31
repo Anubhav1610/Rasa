@@ -37,12 +37,12 @@ class ActionSearchNoPatients(Action):
                 break
 
         message = "Please Enter Correct State Name !"
+        state = state.capitalize()
 
         if state == "india" or state == "India":
-            d = "2021-10-10"
             for data in responses["data"]:
                a = 0
-               if (data["day"] == d):
+               if (data["day"] == "2021-10-10"):
                   for dt in data["summary"].values():
                      a = a+1
                      if(a == 2):
@@ -52,13 +52,13 @@ class ActionSearchNoPatients(Action):
                      if(a == 5):
                          z = dt
                          break
-            message = "Active Cases For --> India on: 2021-10-10 was " + str(x-y-z)
+            message = "Active Cases For --> India as per last data on: 2021-10-10 was " + str(x-y-z)
         
         else:    
            for data in responses["data"]:
               for dt in data["regional"]:
                  if (dt["loc"] == state and data["day"] == "2021-10-10"):  #2021-10-10 is the last day in the Api
-                    message = "Active Cases For --> " + state + ", on: 2021-10-10 was " + str(dt["confirmedCasesIndian"]-(dt["discharged"]+dt["deaths"]))
+                    message = "Active Cases For --> " + state + ", as per last data on: 2021-10-10 was " + str(dt["confirmedCasesIndian"]-(dt["discharged"]+dt["deaths"]))
         
         print(message)
         dispatcher.utter_message(message)
@@ -78,11 +78,21 @@ class ActionSearchCasesOnDate(Action):
 
         entities = tracker.latest_message['entities']
         print("Now Showing Data For:", entities)
-        state = None
+        day = None
 
         for i in entities:
             if i["entity"] == "day":
                 day = i["value"]
+
+        
+        if(day[1] == '-' and day[3] == '-'):
+            day = '0'+ day[:2] + '0' + day[2:]
+
+        if(day[1] == '-'):
+            day = '0'+day
+        
+        if(day[5] == '-'):
+            day = day[6:] + "-" + day[3:5] + "-" + day[:2]
 
         message = "Please Enter Correct Date !"
 
@@ -100,8 +110,8 @@ class ActionSearchCasesOnDate(Action):
                         z = dt
                         break
 
-        message = "As Per Data On: " + str(day) + " Active Cases in India was "  + str(x-y-z)
-            
+        message = "As Per last Data On: " + str(day) + ", active Cases in India was "  + str(x-y-z)
+
 
         print(message)
         dispatcher.utter_message(message)
@@ -121,7 +131,8 @@ class ActionSearchCasesOnDate2(Action):
 
         entities = tracker.latest_message['entities']
         print("Now Showing Data For:", entities)
-        state = None
+        day1 = None
+        day2 = None
 
         for i in entities:
             if i["entity"] == "day":
@@ -136,7 +147,23 @@ class ActionSearchCasesOnDate2(Action):
                 a = a+1
                 if a == 2:
                    day2 = i["value"]
+
+        if(day1[1] == '-' and day1[3] == '-'):
+            day1 = '0'+ day1[:2] + '0' + day1[2:]
+
+        if(day2[1] == '-' and day2[3] == '-'):
+            day2 = '0'+ day2[:2] + '0' + day2[2:]
                 
+        if(day1[1] == '-'):
+            day1 = '0'+day
+        if(day2[1] == '-'):
+            day2 = '0'+day
+
+        if(day1[5] == '-'):
+            day1 = day1[6:]+ "-" + day1[3:5] + "-" + day1[:2]
+
+        if(day2[5] == '-'):
+            day2 = day2[6:]+ "-" + day2[3:5] + "-" + day2[:2]
 
         message = "Please Enter Correct Date !"
 
@@ -167,6 +194,7 @@ class ActionSearchCasesOnDate2(Action):
                      if(a == 5):
                         z = dt
                         break
+        
         d2 = x-y-z
 
         message = "Cases from " + str(day1) + " to " + str(day2) + " was "  + str(d1+d2)
@@ -206,22 +234,19 @@ class ActionSearchNoPatients2(Action):
                     state2 = i["value"]
                     break
 
-
+        state1 = state2.capitalize()
+        state2 = state2.capitalize()
         message = "Please Enter Correct State Name !"
 
         for data in responses["data"]:
             for dt in data["regional"]:
                  if (dt["loc"] == state1 and data["day"] == "2021-10-10"):
                       x = dt["confirmedCasesIndian"]-(dt["discharged"]+dt["deaths"])
-                      break
-
-        for data in responses["data"]:
-            for dt in data["regional"]:
+                      
                  if (dt["loc"] == state2 and data["day"] == "2021-10-10"):
                       y = dt["confirmedCasesIndian"]-(dt["discharged"]+dt["deaths"])
-                      break
-
-        message = "Combined cases of " + state1 + " and " + state2 + " on 2021-10-10 was " + str(x+y) 
+ 
+        message = "Combined cases of " + state1 + " and " + state2 + " as per last data on 2021-10-10 was " + str(x+y) 
 
 
         print(message)
@@ -242,8 +267,8 @@ class ActionSearchCasesOnDatename(Action):
 
         entities = tracker.latest_message['entities']
         print("Now Showing Data For:", entities)
-        state1 = None
-        state2 = None
+        month = None
+        day = None
 
         for i in entities:
             if i["entity"] == "month":
@@ -291,14 +316,18 @@ class ActionSearchCasesOnDatename(Action):
           if month == 'dec':
             date = '2021-12-'
           
-        date = date + str(day)
+        if day<10:
+          date = date + "0" + str(day)
+        
+        if day>=10:
+          date = date + str(day)
         
 
         message = "Please Enter Correct State Name !"
 
+        x,y,z,a = 0,0,0,0
         for data in responses["data"]:
-               a = 0
-               if (data["day"] == day):
+               if (data["day"] == date):
                   for dt in data["summary"].values():
                      a = a+1
                      if(a == 2):
@@ -309,7 +338,7 @@ class ActionSearchCasesOnDatename(Action):
                         z = dt
                         break
 
-        message = "As Per Data On: " + str(day) + " Active Cases in India was "  + str(x-y-z)
+        message = "As Per Data On: " + str(date) + " Active Cases in India was "  + str(x-y-z)
         
 
         print(message)
@@ -330,10 +359,6 @@ class ActionSearchCasesOnDatenameAndState(Action):
 
         entities = tracker.latest_message['entities']
         print("Now Showing Data For:", entities)
-        month = ''
-        date = ''
-        state = ''
-        day = 0
 
         for i in entities:
             if i["entity"] == "month":
@@ -346,7 +371,8 @@ class ActionSearchCasesOnDatenameAndState(Action):
 
         month = month.lower()
         month = month[:3]
-        
+        state = state.capitalize()
+
         if month != '':
           if month == 'jan':
             date = '2021-01-'
@@ -384,7 +410,11 @@ class ActionSearchCasesOnDatenameAndState(Action):
           if month == 'dec':
             date = '2021-12-'
           
-        date = date + str(day)
+        if int(day) < 10:
+          date = date + "0" + str(day)
+
+        if int(day) >= 10:
+          date = date + str(day)
         
 
         message = "Please Enter Correct State Name !"
@@ -407,8 +437,8 @@ class ActionSearchCasesOnDatenameAndState(Action):
         else:    
            for data in responses["data"]:
               for dt in data["regional"]:
-                 if (dt["loc"] == state and data["day"] == "2021-10-10"):  #2021-10-10 is the last day in the Api
-                    message = "Active Cases For --> " + state + ", on: " + str(state) + " was " + str(dt["confirmedCasesIndian"]-(dt["discharged"]+dt["deaths"]))
+                 if (dt["loc"] == state and data["day"] == date):
+                    message = "Active Cases For --> " + state + ", on: " + str(date) + " was " + str(dt["confirmedCasesIndian"]-(dt["discharged"]+dt["deaths"]))
         
         
 
@@ -430,23 +460,32 @@ class ActionSearchCasesOnDateAndState(Action):
 
         entities = tracker.latest_message['entities']
         print("Now Showing Data For:", entities)
-        month = ''
-        date = ''
-        state = ''
-        day = 0
 
+        
         for i in entities:
             if i["entity"] == "day":
-                date = i["value"]
+                day = i["value"]
             if i["entity"] == "state":
                 state = i["value"]
 
+        state = state.capitalize()
+                
         message = "Please Enter Correct State Name !"
+
+        if(day[1] == '-' and day[3] == '-'):
+            day = '0'+ day[:2] + '0' + day[2:]
+
+        if(day[1] == '-'):
+            day = '0'+day
+        
+        if(day[5] == '-'):
+            day = day[6:] + "-" + day[3:5] + "-" + day[:2]
+
 
         if state == "india" or state == "India":
             for data in responses["data"]:
                a = 0
-               if (data["day"] == date):
+               if (data["day"] == day):
                   for dt in data["summary"].values():
                      a = a+1
                      if(a == 2):
@@ -456,13 +495,13 @@ class ActionSearchCasesOnDateAndState(Action):
                      if(a == 5):
                          z = dt
                          break
-            message = "Active Cases For --> India on: " + str(date) + " was " + str(x-y-z)
+            message = "Active Cases For --> India on: " + str(day) + " was " + str(x-y-z)
         
         else:    
            for data in responses["data"]:
               for dt in data["regional"]:
-                 if (dt["loc"] == state and data["day"] == "2021-10-10"):  #2021-10-10 is the last day in the Api
-                    message = "Active Cases For --> " + state + ", on: " + str(state) + " was " + str(dt["confirmedCasesIndian"]-(dt["discharged"]+dt["deaths"]))
+                 if (dt["loc"] == state and data["day"] == day):  
+                    message = "Active Cases For --> " + state + ", on: " + str(day) + " was " + str(dt["confirmedCasesIndian"]-(dt["discharged"]+dt["deaths"]))
         
         
 
