@@ -40,6 +40,7 @@ Make sure the custom actions server is running:
 Start the interactive training session by running:
 	
 	rasa interactive
+As of now the bot needs more training, for which I will be using the interactive training session.
 
 
 # Further in this project I will do
