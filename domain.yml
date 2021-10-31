@@ -3,23 +3,24 @@ session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 intents:
-- search_cases_ondate_state
-- search_cases_ondate
-- search_cases_ondate2
-- search_cases_ondatename
-- search_no_patients
-- search_no_patients2
 - search_cases_ondatename_and_state
+- Wrong Input
+- search_cases_ondate_state
+- search_no_patients
+- out_of_scope
+- search_cases_ondate
+- inform
+- search_cases_ondatename
+- search_no_patients2
+- goodbye
+- affirm
+- search_cases_ondate2
 - search_cases_ondate_and_state
 - greet
-- goodbye
-- inform
-- affirm
 - deny
 - mood_great
 - mood_unhappy
 - bot_challenge
-- out_of_scope
 - thankyou
 entities:
 - day
@@ -65,5 +66,6 @@ actions:
 - action_search_no_patients
 - action_search_no_patients2
 - utter_ask_location
+- utter_did_that_help
 - utter_goodbye
 - utter_greet
