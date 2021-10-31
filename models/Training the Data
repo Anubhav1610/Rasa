@@ -1,0 +1,6 @@
+The model needs to be trained.
+1. Open Command Prompt
+2. use command 
+   cd (address of the file)
+3. use command
+   rasa train
