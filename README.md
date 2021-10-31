@@ -51,10 +51,11 @@ Start the interactive training session by running:
    
    Udemy Course :- 
              
-	     https://www.udemy.com/share/103vQW3@vnYiJooUY1ZwSN6CEY9UNTC2jOx9anTDFoBGDA4_EXXXJoO9vZpFPjMjK0WHk6_n/
+    https://www.udemy.com/share/103vQW3@vnYiJooUY1ZwSN6CEY9UNTC2jOx9anTDFoBGDA4_EXXXJoO9vZpFPjMjK0WHk6_n/
+   
    Youtube :- 
    
-             https://www.youtube.com/channel/UCJ0V6493mLvqdiVwOKWBODQ
-             https://www.youtube.com/watch?v=8koqG3GROAg&list=PLIRnO_sdVuEevLMSy7bE-Jaqyf1MK_wtr
-	     https://www.youtube.com/watch?v=80GDt7HW_-g&list=PLtFHvora00y80hvsNJ-6YkmfTMrxk5rOe
+    https://www.youtube.com/channel/UCJ0V6493mLvqdiVwOKWBODQ
+    https://www.youtube.com/watch?v=8koqG3GROAg&list=PLIRnO_sdVuEevLMSy7bE-Jaqyf1MK_wtr
+    https://www.youtube.com/watch?v=80GDt7HW_-g&list=PLtFHvora00y80hvsNJ-6YkmfTMrxk5rOe
 	      
