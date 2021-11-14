@@ -50,7 +50,7 @@ As of now the bot needs more training, for which I will be using the interactive
     
 # References
    
-   Udemy Course :- 
+   Udemy :- 
              
     https://www.udemy.com/share/103vQW3@vnYiJooUY1ZwSN6CEY9UNTC2jOx9anTDFoBGDA4_EXXXJoO9vZpFPjMjK0WHk6_n/
    
